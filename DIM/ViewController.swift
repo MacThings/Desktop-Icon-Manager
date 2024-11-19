@@ -76,6 +76,7 @@ class ViewController: NSViewController {
                         self.loadPrefs()
                         self.start = false
                         self.updateUI()
+                        self.loadResolution()
                     }
                 }
             }
@@ -406,6 +407,12 @@ class ViewController: NSViewController {
         arrangements.removeAll()
         orderedArrangements.removeAll()
         return false // we don't have sets recoverable, punt and redo
+    }
+    
+    func loadResolution() {
+        savePrefs()
+        loadMenu()
+        self.loadPrefs()
     }
     
     @IBAction func scanResolution(_ sender: Any) {
