@@ -407,20 +407,24 @@ class ViewController: NSViewController {
         orderedArrangements.removeAll()
         return false // we don't have sets recoverable, punt and redo
     }
+    
     @IBAction func scanResolution(_ sender: Any) {
         savePrefs()
-        _arrangeButton(currentName)
-        print(currentName)
         loadMenu()
+        self.loadPrefs()
+        //print(currentName)
     }
     
+    // Luigi
     // save user's preferences
         func savePrefs() {
             let screens = NSScreen.screens
             for (index, screen) in screens.enumerated() {
-                // Bildschirmauflösung abrufen
                 let screenResolution = screen.frame.size
                 let resolutionString = "\(Int(screenResolution.width))x\(Int(screenResolution.height))"
+                if arrangementButton.itemTitles.contains(resolutionString) {
+                        arrangementButton.selectItem(withTitle: resolutionString)
+                }
                 print("Bildschirm \(index + 1): \(resolutionString)")
                 let defaults = UserDefaults.standard
                 //defaults.set(currentName, forKey: "currentName")
